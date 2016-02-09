@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="resort_map_title_size">24sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="titleTextSize">20sp</dimen>
+    <dimen name="titleContentMarginLeft">10dp</dimen>
+    <dimen name="homePageLabelMarginTop">10dp</dimen>
+    <dimen name="homePageTextSize">20sp</dimen>
+    <dimen name="homePageContentmarginLeft">10dp</dimen>
+    <dimen name="wikiPageTextSize">20sp</dimen>
+    <dimen name="wikiPageLabelMarginTop">10dp</dimen>
+    <dimen name="wikiPageContentMarginLeft">10dp</dimen>
+    <dimen name="wikiPageContentMarginTop">10dp</dimen>
+    <dimen name="homePageContentMarginTop">10dp</dimen>
+    <dimen name="scrollViewmarginTop">10dp</dimen>
+    <dimen name="descriptionTextViewTextSize">20sp</dimen>
+</resources>

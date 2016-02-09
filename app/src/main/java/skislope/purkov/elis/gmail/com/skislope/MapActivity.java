@@ -3,6 +3,9 @@ package skislope.purkov.elis.gmail.com.skislope;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,10 +25,10 @@ import skislope.purkov.elis.gmail.com.skislope.model.DataProvider;
 import skislope.purkov.elis.gmail.com.skislope.model.ParkingLot;
 import skislope.purkov.elis.gmail.com.skislope.model.SkiResort;
 
-public class MapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class MapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
-    private static final short COUNTRY_MAP_ZOOM = 7;
-    private static final short RESORT_MAP_ZOOM = 10;
+    private static final long COUNTRY_MAP_ZOOM = 7;
+    private static final long RESORT_MAP_ZOOM = 11;
     private static final LatLng LJUBLJANA_POSITION = new LatLng(46.30648, 14.303078);
 
     private Map<Marker, SkiResort> skiResorts;
@@ -53,10 +56,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
 
         // Set action listeners
         mMap.setOnMarkerClickListener(this);
+        mMap.setOnInfoWindowClickListener(this);
 
-        // Set position to ljubljana and set zoom
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(LJUBLJANA_POSITION));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(COUNTRY_MAP_ZOOM));
+        // Move position to ljubljana and set zoom
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(LJUBLJANA_POSITION, COUNTRY_MAP_ZOOM), 1500, null);
 
         // Populate map with ski resorts
         for (SkiResort resort : DataProvider.getSkiResorts()) {
@@ -78,26 +81,50 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
 
             parkingLots.clear();
 
-            // Set new markers
+            // Set new markers for parking lots
             ParkingLot[] parkingLotsArr = skiResorts.get(marker).getParkingLots();
             for (int i = 0; i < parkingLotsArr.length; i++)
                 parkingLots.put(putMarker(parkingLotsArr[i]), parkingLotsArr[i]);
 
-            // Zoom to selected resort
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(RESORT_MAP_ZOOM));
+            // Move and zoom to selected resort
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), RESORT_MAP_ZOOM), 1500, null);
 
         }
 
-        return false;
+        // Show info window
+        marker.showInfoWindow();
+
+        return true;
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+
+        Intent intent;
+
+        if(parkingLots.get(marker) == null) {
+            SkiResort skiResort = skiResorts.get(marker);
+            intent = new Intent(this, SkiResortDetails.class);
+            intent.putExtra("skiResort", skiResorts.get(marker));
+        }
+        else{
+            ParkingLot parkingLot = parkingLots.get(marker);
+            intent = new Intent(this, ParkingLotDetails.class);
+            intent.putExtra("parkingLot", parkingLots.get(marker));
+        }
+
+        // Start activity
+        startActivity(intent);
+
     }
 
     public Marker putMarker(SkiResort resort) {
-        return mMap.addMarker(new MarkerOptions().position(resort.getLocation()).title(resort.getTitle()).snippet(resort.getDescription()));
+        return mMap.addMarker(new MarkerOptions().position(resort.getLocation()).title(resort.getTitle()));
 
     }
 
     public Marker putMarker(ParkingLot parkingLot) {
-        return mMap.addMarker(new MarkerOptions().position(parkingLot.getLocation()).title(parkingLot.getTitle()).snippet(parkingLot.getDescription())
+        return mMap.addMarker(new MarkerOptions().position(parkingLot.getLocation()).title(parkingLot.getTitle())
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
     }

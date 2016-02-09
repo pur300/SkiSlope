@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="skislope.purkov.elis.gmail.com.skislope.ParkingLotDetails">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/skiResortTitle"
+        android:textSize="@dimen/titleTextSize"
+        android:id="@+id/titletextViewLabel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/titleTextSize"
+        android:id="@+id/titleTextView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@+id/titletextViewLabel"
+        android:layout_marginLeft="@dimen/titleContentMarginLeft"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/homePageTitle"
+        android:textSize="@dimen/homePageTextSize"
+        android:id="@+id/homePageTextViewLabel"
+        android:layout_below="@+id/titletextViewLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/homePageLabelMarginTop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/homePageTextSize"
+        android:id="@+id/homePageTextView"
+        android:layout_below="@+id/titleTextView"
+        android:layout_toRightOf="@+id/homePageTextViewLabel"
+        android:layout_marginTop="@dimen/homePageContentMarginTop"
+        android:layout_marginLeft="@dimen/homePageContentmarginLeft"
+        android:autoLink="web" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/wikiPageTitle"
+        android:textSize="@dimen/wikiPageTextSize"
+        android:id="@+id/wikiPageTextViewLabel"
+        android:layout_below="@+id/homePageTextViewLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/wikiPageLabelMarginTop"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/wikiPageTextSize"
+        android:id="@+id/wikiPageTextView"
+        android:layout_below="@+id/homePageTextView"
+        android:layout_toRightOf="@+id/wikiPageTextViewLabel"
+        android:layout_marginTop="@dimen/wikiPageContentMarginTop"
+        android:layout_marginLeft="@dimen/wikiPageContentMarginLeft"
+        android:autoLink="web" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionScrollView"
+        android:layout_below="@+id/wikiPageTextViewLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/scrollViewmarginTop" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/descriptionTextViewTextSize"
+            android:id="@+id/scrollViewDescription" />
+    </ScrollView>
+
+</RelativeLayout>
