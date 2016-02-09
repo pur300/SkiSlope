@@ -1,12 +1,16 @@
 package skislope.purkov.elis.gmail.com.skislope;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -18,9 +22,14 @@ import skislope.purkov.elis.gmail.com.skislope.model.DataProvider;
 import skislope.purkov.elis.gmail.com.skislope.model.ParkingLot;
 import skislope.purkov.elis.gmail.com.skislope.model.SkiResort;
 
-public class MapActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
-    private Map<String, Marker> skiResorts;
+    private static final short COUNTRY_MAP_ZOOM = 7;
+    private static final short RESORT_MAP_ZOOM = 10;
+    private static final LatLng LJUBLJANA_POSITION = new LatLng(46.30648, 14.303078);
+
+    private Map<Marker, SkiResort> skiResorts;
+    private Map<Marker, ParkingLot> parkingLots;
     private GoogleMap mMap;
 
     @Override
@@ -31,31 +40,55 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        // Init HashMaps
         skiResorts = new HashMap<>();
+        parkingLots = new HashMap<>();
 
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Populate map with ski resorts and parking lots
+        // Set action listeners
+        mMap.setOnMarkerClickListener(this);
+
+        // Set position to ljubljana and set zoom
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(LJUBLJANA_POSITION));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(COUNTRY_MAP_ZOOM));
+
+        // Populate map with ski resorts
         for (SkiResort resort : DataProvider.getSkiResorts()) {
-            Marker resortMarker = putMarker(resort);
-            skiResorts.put(resortMarker.getId(), resortMarker);
-            /*for(ParkingLot parkingLot : resort.getParkingLots())
-                putMarker(parkingLot);*/
+            skiResorts.put(putMarker(resort), resort);
         }
 
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+
+        // Draw parking lots if marker is not present in parkingLots hashmap
+
+        if (parkingLots.get(marker) == null) {
+
+            // Remove previous markers
+            for (Marker markerKey : parkingLots.keySet())
+                markerKey.remove();
+
+            parkingLots.clear();
+
+            // Set new markers
+            ParkingLot[] parkingLotsArr = skiResorts.get(marker).getParkingLots();
+            for (int i = 0; i < parkingLotsArr.length; i++)
+                parkingLots.put(putMarker(parkingLotsArr[i]), parkingLotsArr[i]);
+
+            // Zoom to selected resort
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(RESORT_MAP_ZOOM));
+
+        }
+
+        return false;
     }
 
     public Marker putMarker(SkiResort resort) {
@@ -63,8 +96,10 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
 
     }
 
-    public Marker putMarker(ParkingLot parkingLot){
-        return mMap.addMarker(new MarkerOptions().position(parkingLot.getLocation()).title(parkingLot.getTitle()).snippet(parkingLot.getDescription()));
+    public Marker putMarker(ParkingLot parkingLot) {
+        return mMap.addMarker(new MarkerOptions().position(parkingLot.getLocation()).title(parkingLot.getTitle()).snippet(parkingLot.getDescription())
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
 
     }
+
 }

@@ -14,7 +14,6 @@ public final class DataProvider {
 
     static {
 
-
         addResort("Mariborsko pohorje", "", "http://www.mariborskopohorje.si", "", new ParkingLot[]{
                 new ParkingLot("Vzpenjača", "", new LatLng(46.533928, 15.600561)),
                 new ParkingLot("Bolfenk", "", new LatLng(46.514446, 15.576524)),
@@ -60,6 +59,13 @@ public final class DataProvider {
                 new ParkingLot("Sankališče", "", new LatLng(46.169571, 14.191135))
         }, new LatLng(46.175914, 14.185133));
 
+        addResort("Soriška planina", "", "http://www.soriska-planina.si/#", "https://sl.wikipedia.org/wiki/Soriška_planina", new ParkingLot[]{
+                new ParkingLot("Brunarica", "", new LatLng(46.240909, 14.010432))
+        }, new LatLng(46.236234, 14.007402));
+
+        addResort("Velika planina", "", "http://www.velikaplanina.si/Zimske-aktivnosti/Smucanje", "https://sl.wikipedia.org/wiki/Velika_planina#smu.C4.8Di.C5.A1.C4.8De", new ParkingLot[]{
+                new ParkingLot("Nihalka", "", new LatLng(46.305440, 14.609047))
+        }, new LatLng(46.302460, 14.630631));
 
     }
 

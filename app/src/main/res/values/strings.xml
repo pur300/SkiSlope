@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SkiSlope</string>
     <string name="title_activity_map">SkiSlope</string>
+    <string name="title_activity_resort_map">Map</string>
 </resources>
