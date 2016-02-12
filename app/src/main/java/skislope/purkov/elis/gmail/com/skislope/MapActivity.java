@@ -1,19 +1,16 @@
 package skislope.purkov.elis.gmail.com.skislope;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -25,10 +22,10 @@ import skislope.purkov.elis.gmail.com.skislope.model.DataProvider;
 import skislope.purkov.elis.gmail.com.skislope.model.ParkingLot;
 import skislope.purkov.elis.gmail.com.skislope.model.SkiResort;
 
-public class MapActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
+public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
     private static final long COUNTRY_MAP_ZOOM = 7;
-    private static final long RESORT_MAP_ZOOM = 11;
+    private static final long RESORT_MAP_ZOOM = 12;
     private static final LatLng LJUBLJANA_POSITION = new LatLng(46.30648, 14.303078);
 
     private Map<Marker, SkiResort> skiResorts;
@@ -39,6 +36,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -48,6 +46,32 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
         skiResorts = new HashMap<>();
         parkingLots = new HashMap<>();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_map, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.mapTypeNormal:
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                break;
+            case R.id.mapTypeSattelite:
+                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                break;
+            default:
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -102,12 +126,11 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback,
 
         Intent intent;
 
-        if(parkingLots.get(marker) == null) {
+        if (parkingLots.get(marker) == null) {
             SkiResort skiResort = skiResorts.get(marker);
             intent = new Intent(this, SkiResortDetails.class);
             intent.putExtra("skiResort", skiResorts.get(marker));
-        }
-        else{
+        } else {
             ParkingLot parkingLot = parkingLots.get(marker);
             intent = new Intent(this, ParkingLotDetails.class);
             intent.putExtra("parkingLot", parkingLots.get(marker));

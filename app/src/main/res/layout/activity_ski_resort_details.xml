@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,87 +9,125 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="skislope.purkov.elis.gmail.com.skislope.ParkingLotDetails">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/skiResortTitle"
-        android:textSize="@dimen/titleTextSize"
-        android:id="@+id/titletextViewLabel"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/titleTextSize"
-        android:id="@+id/titleTextView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_toRightOf="@+id/titletextViewLabel"
-        android:layout_marginLeft="@dimen/titleContentMarginLeft"/>
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/homePageTitle"
-        android:textSize="@dimen/homePageTextSize"
-        android:id="@+id/homePageTextViewLabel"
-        android:layout_below="@+id/titletextViewLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/homePageLabelMarginTop"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/homePageTextSize"
-        android:id="@+id/homePageTextView"
-        android:layout_below="@+id/titleTextView"
-        android:layout_toRightOf="@+id/homePageTextViewLabel"
-        android:layout_marginTop="@dimen/homePageContentMarginTop"
-        android:layout_marginLeft="@dimen/homePageContentmarginLeft"
-        android:autoLink="web" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/wikiPageTitle"
-        android:textSize="@dimen/wikiPageTextSize"
-        android:id="@+id/wikiPageTextViewLabel"
-        android:layout_below="@+id/homePageTextViewLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="@dimen/wikiPageLabelMarginTop"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/wikiPageTextSize"
-        android:id="@+id/wikiPageTextView"
-        android:layout_below="@+id/homePageTextView"
-        android:layout_toRightOf="@+id/wikiPageTextViewLabel"
-        android:layout_marginTop="@dimen/wikiPageContentMarginTop"
-        android:layout_marginLeft="@dimen/wikiPageContentMarginLeft"
-        android:autoLink="web" />
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/descriptionScrollView"
-        android:layout_below="@+id/wikiPageTextViewLabel"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/scrollViewmarginTop" >
+        <ImageSwitcher
+            android:id="@+id/detailsGallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/descriptionTextViewTextSize"
-            android:id="@+id/scrollViewDescription" />
-    </ScrollView>
+            android:id="@+id/detailsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/detailsGallery"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corner"
+            android:gravity="center"
+            android:text="Title"
+            android:textSize="@dimen/detailsBigTextSize"
+            android:singleLine="true"/>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/detailsEmail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/detailsTitle"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corner"
+            android:drawableLeft="@drawable/mail_icon"
+            android:drawablePadding="25dp"
+            android:gravity="center_vertical"
+            android:text="Email"
+            android:textSize="@dimen/detailsMediumTextSize"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/detailsHomePage"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/detailsEmail"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corner"
+            android:drawableLeft="@drawable/homepage_icon"
+            android:drawablePadding="25dp"
+            android:gravity="center_vertical"
+            android:text="Home page"
+            android:textSize="@dimen/detailsMediumTextSize"
+            android:singleLine="true"/>
+
+        <TextView
+            android:id="@+id/detailsPhone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/detailsHomePage"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_corner"
+            android:drawableLeft="@drawable/phone_icon"
+            android:drawablePadding="25dp"
+            android:gravity="center_vertical"
+            android:text="Phone"
+            android:textSize="@dimen/detailsMediumTextSize"
+            android:singleLine="true"/>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detailsPhone"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/detailsWiki"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_corner"
+                android:drawablePadding="25dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!
+                Wikipedia text is here!Wikipedia text is here!"
+
+                android:textSize="@dimen/detailsSmallTextSize" />
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

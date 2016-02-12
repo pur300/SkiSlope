@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">SkiSlope</string>
-    <string name="title_activity_map">SkiSlope</string>
-    <string name="title_activity_resort_map">Map</string>
-    <string name="SkiResort_info_label">Podatki o smučišču</string>
-    <string name="ParkingLot_info_label">Podatki o parkirišču</string>
-    <string name="skiResortTitle">Naziv:</string>
-    <string name="homePageTitle">Domača stran:</string>
-    <string name="wikiPageTitle">Wiki:</string>
+    <string name="titleActivityMap">SkiSlope</string>
+    <string name="SkiResortInfoLlabel">Podatki o smučišču</string>
+    <string name="ParkingLotInfoLabel">Podatki o parkirišču</string>
+    <string name="normalMap">Normalna mapa</string>
+    <string name="satelliteMap">Satelitska mapa</string>
+    <string name="hybridMap">Hibridna mapa</string>
 </resources>

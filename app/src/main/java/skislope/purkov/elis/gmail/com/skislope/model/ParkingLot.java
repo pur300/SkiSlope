@@ -48,10 +48,7 @@ public class ParkingLot implements Parcelable{
         return description;
     }
 
-    public LatLng getLocation() {
-
-        return this.location;
-    }
+    public LatLng getLocation() { return this.location; }
 
     public static final Parcelable.Creator<ParkingLot> CREATOR
             = new Parcelable.Creator<ParkingLot>() {

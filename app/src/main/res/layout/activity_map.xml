@@ -9,13 +9,9 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="skislope.purkov.elis.gmail.com.skislope.MapActivity" />
+        tools:context="skislope.purkov.elis.gmail.com.skislope.MapActivity"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/map"
-        android:gravity="center" />
 
 </RelativeLayout>
