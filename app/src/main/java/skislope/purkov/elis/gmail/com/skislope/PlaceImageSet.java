@@ -16,6 +16,8 @@ import skislope.purkov.elis.gmail.com.skislope.model.SkiResort;
 
 public class PlaceImageSet extends AsyncTask<Object, Void, List<Bitmap>> {
 
+    private static final int MAX_IMAGES = 5;
+
     private OnImagesReceivedListener callback;
 
     public void setOnImageReceivedListener(OnImagesReceivedListener listener) {
@@ -26,6 +28,7 @@ public class PlaceImageSet extends AsyncTask<Object, Void, List<Bitmap>> {
     protected List<Bitmap> doInBackground(Object... params) {
 
         List<Bitmap> placeImages = new ArrayList<>();
+        int currentPicIndex = 0;
 
         if(params.length == 2) {
 
@@ -33,26 +36,16 @@ public class PlaceImageSet extends AsyncTask<Object, Void, List<Bitmap>> {
             GoogleApiClient mGoogleApiClient = (GoogleApiClient) params[0];
             SkiResort skiResort = (SkiResort)params[1];
 
-            // Get all places
-            PendingResult<AutocompletePredictionBuffer> pendingResult = Places.GeoDataApi.getAutocompletePredictions(mGoogleApiClient, skiResort.getTitle()
-                    , null, null);
-            AutocompletePredictionBuffer predictionBuffer = pendingResult.await();
-
-            for (AutocompletePrediction prediction : predictionBuffer) {
-                PlacePhotoMetadataResult photoMetaDataResult = Places.GeoDataApi.getPlacePhotos(mGoogleApiClient, skiResort.getPlaceId()).await();
-                if (photoMetaDataResult.getStatus().isSuccess()) {
-                    PlacePhotoMetadataBuffer photoMetadataBuffer = photoMetaDataResult.getPhotoMetadata();
-                    // Iterate through images
-                    for (PlacePhotoMetadata photo : photoMetadataBuffer) {
-                        // Place resized image into a List
-                        placeImages.add(photo.getPhoto(mGoogleApiClient).await().getBitmap());
-                    }
-                    // Free PlacePhotoMetadataBuffer resource
-                    photoMetadataBuffer.release();
+            PlacePhotoMetadataResult photoMetaDataResult = Places.GeoDataApi.getPlacePhotos(mGoogleApiClient, skiResort.getPlaceId()).await();
+            if (photoMetaDataResult.getStatus().isSuccess()) {
+                PlacePhotoMetadataBuffer photoMetadataBuffer = photoMetaDataResult.getPhotoMetadata();
+                while(currentPicIndex < photoMetadataBuffer.getCount() && currentPicIndex < MAX_IMAGES) {
+                    // Place resized image into a List
+                    placeImages.add(photoMetadataBuffer.get(currentPicIndex++).getPhoto(mGoogleApiClient).await().getBitmap());
                 }
+                // Free PlacePhotoMetadataBuffer resource
+                photoMetadataBuffer.release();
             }
-            // Free AutocompletePredictionBuffer resource
-            predictionBuffer.release();
 
         }
 
