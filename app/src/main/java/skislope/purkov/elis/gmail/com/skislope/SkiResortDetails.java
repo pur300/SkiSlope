@@ -47,8 +47,8 @@ public class SkiResortDetails extends AppCompatActivity implements View.OnLongCl
         skiResort = getIntent().getParcelableExtra("skiResort");
 
         // Configure ImageSwitcher
-        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
-        Animation out = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+        Animation out = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
         detailsGallery = (ImageSwitcher)findViewById(R.id.detailsGallery);
         detailsGallery.setInAnimation(in);
         detailsGallery.setOutAnimation(out);
@@ -101,7 +101,7 @@ public class SkiResortDetails extends AppCompatActivity implements View.OnLongCl
             startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(this.skiResort.getHomePageUrl())));
         }
 
-        return true;
+        return false;
     }
 
     @Override
@@ -116,7 +116,7 @@ public class SkiResortDetails extends AppCompatActivity implements View.OnLongCl
         if(placeImages.size() > 0){
             detailsGallery.setImageDrawable(new BitmapDrawable(getResources(), placeImages.get((currentDetailsGalleryImageIndex++) % placeImages.size())));
         }
-        return true;
+        return false;
     }
 
     @Override
