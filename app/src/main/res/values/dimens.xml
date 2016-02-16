@@ -2,8 +2,8 @@
 <resources>
     <dimen name="resort_map_title_size">24sp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">5dp</dimen>
-    <dimen name="activity_vertical_margin">5dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="detailsBigTextSize">30sp</dimen>
     <dimen name="detailsTextViewBorderWidth">1dp</dimen>
     <dimen name="detailsTextViewRadius">5dp</dimen>

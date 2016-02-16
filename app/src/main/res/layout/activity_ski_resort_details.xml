@@ -9,83 +9,82 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="skislope.purkov.elis.gmail.com.skislope.ParkingLotDetails">
 
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
 
-        <ImageSwitcher
-            android:id="@+id/detailsGallery"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/detailsTitle"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@+id/detailsGallery"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_corner"
-            android:gravity="center"
-            android:text="Title"
-            android:textSize="@dimen/detailsBigTextSize"
-            android:singleLine="true"/>
+            <ImageSwitcher
+                android:id="@+id/detailsGallery"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
-        <TextView
-            android:id="@+id/detailsEmail"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/detailsTitle"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_corner"
-            android:drawableLeft="@drawable/mail_icon"
-            android:drawablePadding="25dp"
-            android:gravity="center_vertical"
-            android:text="Email"
-            android:textSize="@dimen/detailsMediumTextSize"
-            android:singleLine="true"/>
+            <TextView
+                android:id="@+id/detailsTitle"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/detailsGallery"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_corner"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="Title"
+                android:textSize="@dimen/detailsBigTextSize" />
 
-        <TextView
-            android:id="@+id/detailsHomePage"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/detailsEmail"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_corner"
-            android:drawableLeft="@drawable/homepage_icon"
-            android:drawablePadding="25dp"
-            android:gravity="center_vertical"
-            android:text="Home page"
-            android:textSize="@dimen/detailsMediumTextSize"
-            android:singleLine="true"/>
+            <TextView
+                android:id="@+id/detailsEmail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/detailsTitle"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_corner"
+                android:drawableLeft="@drawable/mail_icon"
+                android:drawablePadding="25dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Email"
+                android:textSize="@dimen/detailsMediumTextSize" />
 
-        <TextView
-            android:id="@+id/detailsPhone"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@+id/detailsHomePage"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/rounded_corner"
-            android:drawableLeft="@drawable/phone_icon"
-            android:drawablePadding="25dp"
-            android:gravity="center_vertical"
-            android:text="Phone"
-            android:textSize="@dimen/detailsMediumTextSize"
-            android:singleLine="true"/>
+            <TextView
+                android:id="@+id/detailsHomePage"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/detailsEmail"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_corner"
+                android:drawableLeft="@drawable/homepage_icon"
+                android:drawablePadding="25dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Home page"
+                android:textSize="@dimen/detailsMediumTextSize" />
 
-        <ScrollView
-            android:id="@+id/scrollView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/detailsPhone"
-            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/detailsPhone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/detailsHomePage"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_corner"
+                android:drawableLeft="@drawable/phone_icon"
+                android:drawablePadding="25dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="Phone"
+                android:textSize="@dimen/detailsMediumTextSize" />
 
             <TextView
                 android:id="@+id/detailsWiki"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/detailsPhone"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_corner"
                 android:drawablePadding="25dp"
                 android:gravity="center_vertical"
@@ -125,9 +124,8 @@
 
                 android:textSize="@dimen/detailsSmallTextSize" />
 
-        </ScrollView>
+        </RelativeLayout>
 
-    </RelativeLayout>
-
+    </ScrollView>
 
 </LinearLayout>

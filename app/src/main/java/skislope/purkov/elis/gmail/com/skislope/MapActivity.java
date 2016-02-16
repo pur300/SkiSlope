@@ -18,7 +18,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-import skislope.purkov.elis.gmail.com.skislope.model.DataProvider;
 import skislope.purkov.elis.gmail.com.skislope.model.ParkingLot;
 import skislope.purkov.elis.gmail.com.skislope.model.SkiResort;
 

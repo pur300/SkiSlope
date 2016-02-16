@@ -9,6 +9,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <uses-permission android:name="android.permission.INTERNET" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -25,23 +27,19 @@
             android:name=".MapActivity"
             android:configChanges="orientation|screenSize"
             android:label="@string/titleActivityMap">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".SkiResortDetails"
+            android:configChanges="orientation|screenSize"
             android:label="@string/SkiResortInfoLlabel" />
-
         <activity
             android:name=".ParkingLotDetails"
             android:label="@string/ParkingLotInfoLabel" />
-
     </application>
 
 </manifest>
